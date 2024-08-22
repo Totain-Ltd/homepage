@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mepic Policy</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .content-wrapper {
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+      }
+      header {
+        padding: 0.5rem;
+      }
+      #noscript-content {
+        flex-shrink: 0;
+      }
+      #noscript-content,
+      #fallbackContent {
+        padding: 1rem;
+      }
+      #iframe-container {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      iframe {
+        flex-grow: 1;
+        border: none;
+        width: 100%;
+      }
+      #fallbackContent {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content-wrapper">
+      <header>
+        <nav>
+          <a href="/mepic/" class="secondary">← Back to Mepic</a>
+        </nav>
+      </header>
+
+      <noscript>
+        <div id="noscript-content">
+          <p>
+            Your browser does not support JavaScript, or it is disabled. Please
+            see the policy at:
+          </p>
+          <ul>
+            <li>
+              <a
+                href="https://storage.googleapis.com/totain-public-assets/mepic/terms/privacy-policy.html"
+                >Privacy Policy</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://storage.googleapis.com/totain-public-assets/mepic/terms/terms-and-conditions.html"
+                >Terms and Conditions</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://storage.googleapis.com/totain-public-assets/mepic/terms/cookie-policy.html"
+                >Cookie Policy</a
+              >
+            </li>
+          </ul>
+        </div>
+      </noscript>
+
+      <div id="iframe-container">
+        <iframe id="policyFrame"></iframe>
+        <div id="fallbackContent">
+          <p>
+            If the policy doesn't load,
+            <a id="policyLink" href="">click here</a> to view it directly.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const policyUrls = {
+        privacy:
+          "https://storage.googleapis.com/totain-public-assets/mepic/terms/privacy-policy.html",
+        terms:
+          "https://storage.googleapis.com/totain-public-assets/mepic/terms/terms-and-conditions.html",
+        cookies:
+          "https://storage.googleapis.com/totain-public-assets/mepic/terms/cookie-policy.html",
+      };
+      const policyNames = {
+        privacy: "Privacy Policy",
+        terms: "Terms and Conditions",
+        cookies: "Cookie Policy",
+      };
+      const pagePath = window.location.pathname.split("/");
+      const policyType = pagePath[pagePath.length - 2];
+      const policyUrl = policyUrls[policyType] || "";
+      const policyName = policyNames[policyType] || "Policy";
+
+      document.title = `Mepic - ${policyName}`;
+
+      const iframe = document.getElementById("policyFrame");
+      const fallbackContent = document.getElementById("fallbackContent");
+      const policyLink = document.getElementById("policyLink");
+
+      if (policyUrl) {
+        iframe.src = policyUrl;
+        policyLink.href = policyUrl;
+
+        iframe.onload = function () {
+          fallbackContent.style.display = "none";
+        };
+
+        iframe.onerror = function () {
+          fallbackContent.style.display = "block";
+        };
+      } else {
+        fallbackContent.innerHTML = "Policy not found.";
+        fallbackContent.style.display = "block";
+      }
+    </script>
+  </body>
+</html>

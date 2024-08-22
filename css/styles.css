@@ -1,18 +1,87 @@
-body,
-html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: Arial, sans-serif;
+html,
+body {
+  height: 100%;
+  margin: 0;
 }
 
-header {
-    background-color: #f8f9fa;
-    padding: 10px;
-    text-align: left;
+body {
+  display: flex;
+  flex-direction: column;
 }
 
-a {
-    text-decoration: none;
-    color: #007bff;
+main {
+  flex: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.main-sections {
+  padding: 1rem;
+}
+
+.header-no-padding {
+  padding: 0;
+}
+
+.button-nav {
+  display: flex;
+  width: 100%;
+}
+
+.nav-button {
+  flex: 1;
+  text-align: center;
+  font-size: 30px;
+  padding: 1rem;
+  margin: 0;
+  border-radius: 0;
+  color: #ffffff;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.totain-button {
+  background-color: var(--primary);
+}
+
+.mepic-button {
+  background-color: #2e8b57;
+}
+
+.nav-button-logo {
+  height: 30px;
+  width: auto;
+}
+
+.nav-button:hover {
+  opacity: 0.9;
+}
+
+footer {
+  background: var(--card-sectionning-background-color);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  padding: 1rem;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.grid > * {
+  margin-bottom: 1rem; /* Adjust the value as needed */
+}
+
+.footer-logo {
+  max-height: 50px;
+  width: auto;
+}
+
+.all-rights-reserved {
+  opacity: 0.5;
 }
